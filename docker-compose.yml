@@ -1,0 +1,28 @@
+# PostgreSQL for calendarManager, isolated from the host's default instances.
+# The Spring Boot backend runs natively on the same host and connects via
+# 127.0.0.1:${CM_DB_PORT}.
+name: calendar-manager
+
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: calendar-manager-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${CM_DB_NAME:-calendar_manager}
+      POSTGRES_USER: ${CM_DB_USER:-calendar}
+      POSTGRES_PASSWORD: ${CM_DB_PASSWORD:-calendar}
+      TZ: UTC
+    ports:
+      - "127.0.0.1:${CM_DB_PORT:-15432}:5432"
+    volumes:
+      # PostgreSQL 18+ images keep PGDATA below /var/lib/postgresql/<major>/
+      - cm-pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  cm-pgdata:

@@ -1,0 +1,57 @@
+# calendarManager backend configuration.
+# DB connection values come from the repository-root .env (shared with docker compose)
+# or from environment variables; the defaults below match .env.example.
+spring:
+  application:
+    name: calendar-manager-backend
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - optional:file:../.env[.properties]
+  datasource:
+    url: jdbc:postgresql://${CM_DB_HOST:127.0.0.1}:${CM_DB_PORT:15432}/${CM_DB_NAME:calendar_manager}
+    username: ${CM_DB_USER:calendar}
+    password: ${CM_DB_PASSWORD:calendar}
+    hikari:
+      # Fail fast with a clear error if the DB container is not running.
+      initialization-fail-timeout: 1
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  mvc:
+    problemdetails:
+      enabled: true
+  messages:
+    # messages.properties (English) and messages_de.properties; the language follows Accept-Language
+    # (see WebConfig). Never fall back to the host locale.
+    basename: messages
+    fallback-to-system-locale: false
+
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+
+calendar-manager:
+  cors:
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173

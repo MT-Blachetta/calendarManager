@@ -1,0 +1,128 @@
+# ==========================================================================
+# calendarManager — .gitignore
+# Monorepo: backend/ (Spring Boot, Maven), frontend/ (Vue 3, Vite),
+# reserved for future desktop / Android clients (Gradle).
+# ==========================================================================
+
+# ---------- Environment & secrets ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# ---------- Java / Maven ----------
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+*.war
+*.ear
+*.nar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+hs_err_pid*
+replay_pid*
+*.log
+logs/
+
+# ---------- Spring Boot ----------
+spring-shell.log
+.attach_pid*
+
+# ---------- Node / Vite / frontend ----------
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.vite/
+*.timestamp-*-*.mjs
+__screenshots__/
+*.local
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+/frontend/test-results/
+/frontend/playwright-report/
+
+# ---------- Gradle / Android / desktop (future clients) ----------
+.gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+.cxx/
+.externalNativeBuild/
+captures/
+.navigation/
+*.hprof
+out/
+
+# ---------- IDEs ----------
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+# Eclipse / Spring Tool Suite
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+# VS Code (keep shared settings)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+*.code-workspace
+# Vim / Emacs
+*.swp
+*.swo
+*~
+\#*\#
+
+# ---------- Docker local data ----------
+/docker/data/
+pgdata/
+
+# ---------- OS ----------
+.DS_Store
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---------- Tooling ----------
+.claude/settings.local.json

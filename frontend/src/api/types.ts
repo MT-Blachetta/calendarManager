@@ -1,0 +1,22 @@
+import type { components } from './schema'
+
+type Schemas = components['schemas']
+
+export type Tag = Schemas['TagDto']
+export type TagRequest = Schemas['TagRequest']
+export type Category = Schemas['CategoryDto']
+export type CategoryRequest = Schemas['CategoryRequest']
+export type CategoryKind = Category['kind']
+export type CategoryUsage = Schemas['CategoryUsageDto']
+export type CalendarEvent = Schemas['EventDto']
+export type EventRequest = Schemas['EventRequest']
+export type CalendarViewDto = Schemas['ViewDto']
+export type ViewRequest = Schemas['ViewRequest']
+export type ViewFilterRequest = Schemas['ViewFilterRequest']
+export type FilterMode = CalendarViewDto['filterMode']
+export type ResolvedCalendar = Schemas['ResolvedCalendarDto']
+export type Schedule = Schemas['ScheduleDto']
+export type EventPage = Schemas['PageDtoEventDto']
+export type EventDaySummary = Schemas['EventDaySummaryDto']
+export type SummaryDay = Schemas['Day']
+export type SummaryCalendar = Schemas['CalendarRef']
